@@ -17,7 +17,7 @@ type Subscription {
 }
 
 type Book {
-    id: Int!
+    uuid: String!
     author: String!
     title: String!
     created: String!

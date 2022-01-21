@@ -14,12 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
+import org.springframework.context.annotation.ComponentScan
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.utility.DockerImageName
 import reactor.test.StepVerifier
 
 @EnableAutoConfiguration
+@ComponentScan
 @SpringBootTest(
     webEnvironment = RANDOM_PORT,
     classes = [

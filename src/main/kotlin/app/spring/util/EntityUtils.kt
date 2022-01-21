@@ -13,7 +13,7 @@ fun BookInput.toEntity(): BookEntity {
 
 fun BookEntity.toDto(): Book {
     return Book.newBuilder()
-        .id(this.id)
+        .uuid(this.uuid)
         .author(this.author)
         .title(this.title)
         .created(this.created)
