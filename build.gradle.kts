@@ -34,6 +34,8 @@ dependencies {
     testImplementation(libs.spring.test)
 }
 
+apply(from = "ktlint.gradle.kts")
+
 tasks.withType<KotlinCompile> {
     dependsOn("generateJava")
 

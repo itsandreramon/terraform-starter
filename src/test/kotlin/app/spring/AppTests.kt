@@ -66,7 +66,8 @@ class AppTests {
                 .title()
         )
 
-        val response = queryExecutor.executeAndExtractJsonPath<String>(request.serialize(),
+        val response = queryExecutor.executeAndExtractJsonPath<String>(
+            request.serialize(),
             "data.saveBook.title"
         )
 

@@ -1,6 +1,7 @@
 [versions]
 testcontainers = '1.16.2'
 netflix-dgs = '4.9.16'
+pinterest-ktlint = '0.43.2'
 
 
 [libraries]
@@ -22,3 +23,5 @@ reactor-kotlin = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions"
 spring-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
 spring-mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb-reactive" }
 spring-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "pinterest_ktlint" }
