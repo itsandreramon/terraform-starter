@@ -6,6 +6,13 @@ kotest = "5.1.0"
 mockk = "1.12.2"
 
 [libraries]
+spring-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb-reactive" }
+spring-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+reactor-test = { module = "io.projectreactor:reactor-test" }
+reactor-kotlin = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions" }
+
 testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
 testcontainers-junit = { module = "org.testcontainers:junit-jupiter" }
 testcontainers-mongo = { module = "org.testcontainers:mongodb" }
@@ -17,13 +24,6 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 
 kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor" }
-
-reactor-test = { module = "io.projectreactor:reactor-test" }
-reactor-kotlin = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions" }
-
-spring-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
-spring-mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb-reactive" }
-spring-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 
 pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "pinterest_ktlint" }
 
