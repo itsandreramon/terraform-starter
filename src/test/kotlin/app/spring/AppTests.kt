@@ -52,7 +52,7 @@ class AppTests {
     }
 
     @Test
-    fun save_book() {
+    fun test_save_book() {
         val input = BookInput.newBuilder()
             .title("Harry Potter and the Philosopher's Stone")
             .author("J. K. Rowling")

@@ -2,7 +2,8 @@
 testcontainers = '1.16.2'
 netflix-dgs = '4.9.16'
 pinterest-ktlint = '0.43.2'
-
+kotest = "5.1.0"
+mockk = "1.12.2"
 
 [libraries]
 testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
@@ -25,3 +26,6 @@ spring-mongo = { module = "org.springframework.boot:spring-boot-starter-data-mon
 spring-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 
 pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "pinterest_ktlint" }
+
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
