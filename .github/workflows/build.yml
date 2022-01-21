@@ -19,7 +19,7 @@ jobs:
           java-version: 17
 
       - name: Build with Gradle
-        run: ./gradlew bootJar
+        run: ./gradlew bootJar --scan
 
       - uses: actions/upload-artifact@v2
         with:
