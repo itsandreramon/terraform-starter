@@ -1,11 +1,6 @@
 version: "3.8"
 
 services:
-  spring:
-    image: spring:latest
-    container_name: spring
-    ports:
-      - "8080:8080"
   mongodb:
     image: mongo
     container_name: mongo
@@ -14,7 +9,3 @@ services:
     environment:
       - MONGODB_INITDB_ROOT_USERNAME=rootuser
       - MONGODB_INITDB_ROOT_PASSWORD=rootpass
-
-networks:
-  default:
-    name: app
