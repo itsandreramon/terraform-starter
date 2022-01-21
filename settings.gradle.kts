@@ -16,4 +16,5 @@ gradleEnterprise {
 	}
 }
 
+rootProject.name = "App"
 enableFeaturePreview("VERSION_CATALOGS")

@@ -73,5 +73,4 @@ tasks.withType<GenerateJavaTask> {
 }
 
 group = "app"
-version = "-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
