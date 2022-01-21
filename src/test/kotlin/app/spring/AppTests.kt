@@ -37,8 +37,8 @@ class AppTests {
     var mongo: GenericContainer<*> = GenericContainer(
         DockerImageName.parse("mongo")
     ).withExposedPorts(27017).apply {
-        addEnv("MONGODB_INITDB_ROOT_PASSWORD", "rootpass")
-        addEnv("MONGODB_INITDB_ROOT_USERNAME", "rootuser")
+        addEnv("MONGO_INITDB_ROOT_USERNAME", "root")
+        addEnv("MONGO_INITDB_ROOT_PASSWORD", "example")
     }
 
     @BeforeEach
