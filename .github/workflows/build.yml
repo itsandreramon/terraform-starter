@@ -20,6 +20,9 @@ jobs:
         with:
           java-version: 17
 
+      - name: Run tests
+        run: ./gradlew test --stacktrace
+
       - name: Run lint
         run: ./gradlew ktlintCheck
 
