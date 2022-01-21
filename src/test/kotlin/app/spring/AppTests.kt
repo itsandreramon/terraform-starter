@@ -13,6 +13,11 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.test.context.DynamicPropertyRegistry
+import org.springframework.test.context.DynamicPropertySource
+import org.testcontainers.containers.MongoDBContainer
+import org.testcontainers.junit.jupiter.Container
+import org.testcontainers.junit.jupiter.Testcontainers
 import reactor.test.StepVerifier
 
 @ComponentScan
@@ -24,6 +29,7 @@ import reactor.test.StepVerifier
         BookFetcher::class,
     ]
 )
+@Testcontainers
 class AppTests {
 
     @Autowired lateinit var queryExecutor: DgsReactiveQueryExecutor
@@ -51,5 +57,17 @@ class AppTests {
         StepVerifier.create(response)
             .expectNext("Harry Potter and the Philosopher's Stone")
             .verifyComplete()
+    }
+
+    companion object {
+
+        @Container
+        val mongo: MongoDBContainer = MongoDBContainer("mongo")
+
+        @JvmStatic
+        @DynamicPropertySource
+        fun properties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.data.mongodb.uri", mongo::getReplicaSetUrl)
+        }
     }
 }
