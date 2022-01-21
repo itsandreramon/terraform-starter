@@ -27,7 +27,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Report
-          path: build/reports/tests/test/index.html
+          path: build/reports/tests/test/
 
       - name: Build with Gradle
         run: ./gradlew bootJar --scan --stacktrace
