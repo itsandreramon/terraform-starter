@@ -1,0 +1,29 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    getBookById(id: Int!): Book!
+    getAllBooks: [Book!]!
+}
+
+type Mutation {
+    saveBook(book: BookInput!): Book!
+}
+
+type Subscription {
+    numbers: Int!
+}
+
+type Book {
+    id: Int!
+    author: String!
+    title: String!
+    created: String!
+}
+
+input BookInput {
+    author: String!
+    title: String!
+}
