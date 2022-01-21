@@ -21,11 +21,8 @@ jobs:
       - name: Run lint
         run: ./gradlew ktlintCheck
 
-      - name: Run tests
-        run: ./gradlew test --stacktrace
-
       - name: Build with Gradle
-        run: ./gradlew bootJar --scan --stacktrace
+        run: ./gradlew test bootJar --scan --stacktrace
 
       - uses: actions/upload-artifact@v2
         with:
