@@ -23,9 +23,6 @@ jobs:
       - name: Run lint
         run: ./gradlew ktlintCheck
 
-      - name: Run tests
-        run: ./gradlew test --stacktrace
-
       - name: Build with Gradle
         run: ./gradlew bootJar --scan --stacktrace
 
