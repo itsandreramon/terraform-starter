@@ -45,6 +45,7 @@ tasks.test {
         isDisabled = false
         binaryReportFile.set(file("$buildDir/custom/result.bin"))
         includes = listOf("app.spring.*")
+        excludes = listOf("app.spring.graphql.*")
     }
 }
 
