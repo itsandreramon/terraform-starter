@@ -1,3 +1,5 @@
+[![Coverage](https://codecov.io/gh/itsandreramon/spring-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/itsandreramon/spring-starter)
+[![Build](https://github.com/itsandreramon/spring-starter/workflows/Build/badge.svg?branch=master)](https://github.com/itsandreramon/spring-starter/actions)
 <img width="auto" height="100px" src="https://i.imgur.com/OMtfFVN.png">
 
 ## Stack
