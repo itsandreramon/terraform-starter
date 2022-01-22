@@ -1,5 +1,6 @@
-<img width="auto" height="100px" src="https://i.imgur.com/xQMN7uc.png"></div>
+<img width="auto" height="100px" src="https://i.imgur.com/Zf4Dnja.png">
 
+----
 [![Build](https://github.com/itsandreramon/spring-starter/actions/workflows/build.yml/badge.svg)](https://github.com/itsandreramon/spring-starter/actions/workflows/build.yml)
 
 ## Stack
