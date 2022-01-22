@@ -1,9 +1,9 @@
 [versions]
-testcontainers = '1.16.2'
 netflix-dgs = '4.9.16'
 pinterest-ktlint = '0.43.2'
-kotest = "5.1.0"
-mockk = "1.12.2"
+testcontainers = '1.16.2'
+kotest = '5.1.0'
+mockk = '1.12.2'
 
 [libraries]
 spring-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
