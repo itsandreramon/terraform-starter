@@ -4,7 +4,7 @@ schema {
 }
 
 type Query {
-    getBookById(id: Int!): Book!
+    getBookByUuid(uuid: String!): Book!
     getAllBooks: [Book!]!
 }
 
