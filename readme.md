@@ -1,5 +1,3 @@
-[![Build](https://github.com/itsandreramon/spring-starter/actions/workflows/build.yml/badge.svg)](https://github.com/itsandreramon/spring-starter/actions/workflows/build.yml)
-
 <img width="auto" height="100px" src="https://i.imgur.com/Zf4Dnja.png">
 
 ## Stack
