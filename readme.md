@@ -1,4 +1,4 @@
-<img width="auto" height="100px" src="https://i.imgur.com/Zf4Dnja.png">
+<img width="auto" height="100px" src="https://i.imgur.com/OMtfFVN.png">
 
 ## Stack
 
