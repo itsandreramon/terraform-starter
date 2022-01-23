@@ -18,9 +18,6 @@ jobs:
         with:
           java-version: 17
 
-      - name: Run lint
-        run: ./gradlew ktlintCheck
-
       - name: Build with Gradle
         run: ./gradlew test bootJar --scan --stacktrace
 

@@ -58,7 +58,7 @@ class BookServiceTest {
 			.created(created)
 			.build()
 
-		val book = bookService!!.insert(input)
+		val book = bookService!!.save(input)
 
 		StepVerifier.create(book)
 			.expectNext(expected)

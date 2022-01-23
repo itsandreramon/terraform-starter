@@ -9,10 +9,10 @@ import java.util.UUID
 @Document(collection = "books")
 data class BookEntity(
 
-	@Id
+	@Id   
 	val uuid: String = UUID.randomUUID().toString(),
 
-	@Indexed
+	@Indexed   
 	val title: String,
 
 	val author: String,

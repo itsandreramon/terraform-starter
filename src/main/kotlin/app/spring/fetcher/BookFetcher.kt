@@ -13,21 +13,21 @@ import reactor.core.publisher.Mono
 class BookFetcher(private val bookService: BookService) {
 
 	@DgsQuery
-	fun getBookById(
-		@InputArgument id: Int,
-	): Mono<Book> {
-		return bookService.findById(id)
+	fun getAllBooks(): Mono<List<Book>> {
+		return bookService.getAll()
 	}
 
 	@DgsQuery
-	fun getAllBooks(): Mono<List<Book>> {
-		return bookService.findAll()
+	fun getBookById(
+		@InputArgument id: Int,
+	): Mono<Book> {
+		return bookService.getByUuid(id)
 	}
 
 	@DgsMutation
 	fun saveBook(
 		@InputArgument book: BookInput,
 	): Mono<Book> {
-		return bookService.insert(book)
+		return bookService.save(book)
 	}
 }
