@@ -23,7 +23,7 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew test bootJar --scan --stacktrace
-        
+
       - name: Create coverage report
         run: ./gradlew koverReport
 
