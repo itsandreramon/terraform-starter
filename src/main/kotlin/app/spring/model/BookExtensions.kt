@@ -1,8 +1,7 @@
-package app.spring.util
+package app.spring.model
 
 import app.spring.graphql.types.Book
 import app.spring.graphql.types.BookInput
-import app.spring.model.BookEntity
 
 fun BookInput.toEntity(): BookEntity {
 	return BookEntity(

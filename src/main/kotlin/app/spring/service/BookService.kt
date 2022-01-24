@@ -2,9 +2,9 @@ package app.spring.service
 
 import app.spring.graphql.types.Book
 import app.spring.graphql.types.BookInput
+import app.spring.model.toDto
+import app.spring.model.toEntity
 import app.spring.repository.BookRepository
-import app.spring.util.toDto
-import app.spring.util.toEntity
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
 
