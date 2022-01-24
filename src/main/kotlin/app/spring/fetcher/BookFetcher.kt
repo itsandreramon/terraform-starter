@@ -18,10 +18,10 @@ class BookFetcher(private val bookService: BookService) {
 	}
 
 	@DgsQuery
-	fun getBookById(
-		@InputArgument id: Int,
+	fun getBookByUuid(
+		@InputArgument uuid: Int,
 	): Mono<Book> {
-		return bookService.getByUuid(id)
+		return bookService.getByUuid(uuid)
 	}
 
 	@DgsMutation
