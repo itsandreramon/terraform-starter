@@ -48,7 +48,7 @@ http://localhost:8080/graphiql
 
 This project uses Terraform to provision the MySQL database on AWS using RDS.
 
-### Build the AMI
+### Build the AMI and update the Terraform config
 
 ```
 $ ./build-ami.sh
@@ -57,5 +57,6 @@ $ ./build-ami.sh
 ### Provision the database and EC2 instance
 
 ```
+$ cd terraform
 $ terraform apply
 ```
