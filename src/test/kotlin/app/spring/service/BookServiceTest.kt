@@ -7,10 +7,9 @@ import app.spring.repository.BookRepository
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import reactor.core.publisher.Mono
-import reactor.test.StepVerifier
 
 class BookServiceTest {
 
@@ -42,13 +41,11 @@ class BookServiceTest {
 
 		every {
 			bookRepository.save(any())
-		} returns Mono.just(
-			BookEntity(
-				title = inputTitle,
-				author = inputAuthor,
-				uuid = uuid,
-				created = created,
-			)
+		} returns BookEntity(
+			title = inputTitle,
+			author = inputAuthor,
+			uuid = uuid,
+			created = created,
 		)
 
 		val expected = Book.newBuilder()
@@ -60,8 +57,6 @@ class BookServiceTest {
 
 		val book = bookService!!.save(input)
 
-		StepVerifier.create(book)
-			.expectNext(expected)
-			.verifyComplete()
+		assertEquals(expected, book)
 	}
 }

@@ -6,12 +6,11 @@ import app.spring.model.toDto
 import app.spring.model.toEntity
 import app.spring.repository.BookRepository
 import org.springframework.stereotype.Component
-import reactor.core.publisher.Mono
 
 interface BookService {
-	fun getByUuid(uuid: Int): Mono<Book>
-	fun getAll(): Mono<List<Book>>
-	fun save(book: BookInput): Mono<Book>
+	fun getByUuid(uuid: String): Book?
+	fun getAll(): List<Book>
+	fun save(book: BookInput): Book
 }
 
 @Component
@@ -19,21 +18,16 @@ class BookServiceImpl(
 	private val bookRepository: BookRepository,
 ) : BookService {
 
-	override fun getByUuid(uuid: Int): Mono<Book> {
-		return bookRepository.findById(uuid)
-			.map { it.toDto() }
+	override fun getByUuid(uuid: String): Book? {
+		return bookRepository.findById(uuid).orElse(null)?.toDto()
 	}
 
-	override fun getAll(): Mono<List<Book>> {
-		val booksFlux = bookRepository.findAll()
-			.map { it.toDto() }
-
-		return booksFlux.collectList()
+	override fun getAll(): List<Book> {
+		return bookRepository.findAll().map { it.toDto() }
 	}
 
-	override fun save(book: BookInput): Mono<Book> {
+	override fun save(book: BookInput): Book {
 		val bookEntity = book.toEntity()
-		return bookRepository.save(bookEntity)
-			.map { it.toDto() }
+		return bookRepository.save(bookEntity).toDto()
 	}
 }

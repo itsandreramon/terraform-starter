@@ -22,19 +22,17 @@ dependencies {
 	implementation(platform(libs.netflix.dgs.bom))
 	implementation(libs.netflix.dgs.starter)
 
-	implementation(libs.spring.mongo)
-	implementation(libs.spring.webflux)
+	implementation(libs.spring.data)
+	implementation(libs.spring.web)
 
-	implementation(libs.reactor.kotlin)
 	implementation(libs.kotlin.stdlib)
 
 	testImplementation(platform(libs.testcontainers.bom))
 	testImplementation(libs.testcontainers.junit)
-	testImplementation(libs.testcontainers.mongo)
+	testImplementation(libs.testcontainers.mysql)
 
 	testImplementation(libs.mockk)
 	testImplementation(libs.kotest.assertions)
-	testImplementation(libs.reactor.test)
 	testImplementation(libs.spring.test)
 }
 

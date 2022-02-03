@@ -7,27 +7,26 @@ import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
 import com.netflix.graphql.dgs.DgsQuery
 import com.netflix.graphql.dgs.InputArgument
-import reactor.core.publisher.Mono
 
 @DgsComponent
 class BookFetcher(private val bookService: BookService) {
 
 	@DgsQuery
-	fun getAllBooks(): Mono<List<Book>> {
+	fun getAllBooks(): List<Book> {
 		return bookService.getAll()
 	}
 
 	@DgsQuery
 	fun getBookByUuid(
-		@InputArgument uuid: Int,
-	): Mono<Book> {
+		@InputArgument uuid: String,
+	): Book? {
 		return bookService.getByUuid(uuid)
 	}
 
 	@DgsMutation
 	fun saveBook(
 		@InputArgument book: BookInput,
-	): Mono<Book> {
+	): Book {
 		return bookService.save(book)
 	}
 }

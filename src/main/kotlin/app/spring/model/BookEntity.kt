@@ -1,21 +1,21 @@
 package app.spring.model
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.mongodb.core.index.Indexed
-import org.springframework.data.mongodb.core.mapping.Document
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import java.time.Instant
 import java.util.UUID
 
-@Document(collection = "books")
-data class BookEntity(
+@Entity
+@Table(name = "books")
+open class BookEntity(
 
-	@Id   
+	@Id
 	val uuid: String = UUID.randomUUID().toString(),
 
-	@Indexed   
-	val title: String,
+	val title: String = "",
 
-	val author: String,
+	val author: String = "",
 
 	val created: String = Instant.now().toString(),
 )
