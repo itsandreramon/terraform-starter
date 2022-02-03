@@ -63,7 +63,7 @@ class AppTests {
 		val mysql: MySQLContainer<*> = MySQLContainer("mysql")
 			.withDatabaseName("test")
 			.withUsername("root")
-			.withPassword("example")
+			.withPassword("password")
 
 		@JvmStatic
 		@DynamicPropertySource
