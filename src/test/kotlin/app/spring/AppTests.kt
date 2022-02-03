@@ -14,8 +14,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.context.annotation.ComponentScan
-import org.springframework.test.context.DynamicPropertyRegistry
-import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
@@ -64,13 +62,5 @@ class AppTests {
 			.withDatabaseName("test")
 			.withUsername("root")
 			.withPassword("password")
-
-		@JvmStatic
-		@DynamicPropertySource
-		fun properties(registry: DynamicPropertyRegistry) {
-			registry.add("spring.datasource.url", mysql::getJdbcUrl)
-			registry.add("spring.datasource.password", mysql::getPassword)
-			registry.add("spring.datasource.username", mysql::getUsername)
-		}
 	}
 }
