@@ -61,11 +61,16 @@ class AppTests {
 
 		@Container
 		val mysql: MySQLContainer<*> = MySQLContainer("mysql")
+			.withDatabaseName("test")
+			.withUsername("root")
+			.withPassword("example")
 
 		@JvmStatic
 		@DynamicPropertySource
 		fun properties(registry: DynamicPropertyRegistry) {
 			registry.add("spring.datasource.url", mysql::getJdbcUrl)
+			registry.add("spring.datasource.password", mysql::getPassword)
+			registry.add("spring.datasource.username", mysql::getUsername)
 		}
 	}
 }
