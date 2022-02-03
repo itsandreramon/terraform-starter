@@ -1,22 +1,21 @@
 [![Coverage](https://codecov.io/gh/itsandreramon/spring-starter-rds/branch/master/graph/badge.svg)](https://codecov.io/gh/itsandreramon/spring-starter)
 [![Build](https://github.com/itsandreramon/spring-starter-rds/workflows/Build/badge.svg?branch=master)](https://github.com/itsandreramon/spring-starter/actions)
 
-<img width="auto" height="100px" src="https://i.imgur.com/OMtfFVN.png">
+<img width="auto" height="100px" src="https://i.imgur.com/7HXv0L2.png">
 
 # Stack
 
 | What          | How                                                                                                                        |
 |---------------|----------------------------------------------------------------------------------------------------------------------------|
-| Framework     | [Spring Boot 3](https://spring.io/)                                                                                        |
-| Async         | [Reactor](https://github.com/reactor/reactor-core)                                                                       |
+| Framework     | [Spring Boot 2](https://spring.io/)                                                                                        |
 | GraphQL       | [Netflix DGS](https://github.com/Netflix/dgs-framework)                                                                    |
-| Persistence   | [MongoDB](https://www.mongodb.com/)                                                                                        |
+| Persistence   | [MySQL](https://www.mysql.com/)                                                                                        |
 | Serialization | [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)                                                   |
 | Testing       | [JUnit 5](https://github.com/junit-team/junit5) & [Testcontainers](https://github.com/testcontainers/testcontainers-java/) |
 
 # Instructions
 
-This project depends on a MongoDB instance which should be run
+This project depends on a MySQL instance which should be run
 using [Docker](https://www.docker.com/products/docker-desktop) Compose.
 
 ### Run the MySQL container
