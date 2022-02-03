@@ -7,10 +7,9 @@
 
 | What          | How                                                                                                                        |
 |---------------|----------------------------------------------------------------------------------------------------------------------------|
-| Framework     | [Spring Boot 3](https://spring.io/)                                                                                        |
-| Async         | [Reactor](https://github.com/reactor/reactor-core)                                                                       |
+| Framework     | [Spring Boot 2](https://spring.io/)                                                                                        |
 | GraphQL       | [Netflix DGS](https://github.com/Netflix/dgs-framework)                                                                    |
-| Persistence   | [MongoDB](https://www.mongodb.com/)                                                                                        |
+| Persistence   | [MySQL](https://www.mysql.com/)                                                                                        |
 | Serialization | [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)                                                   |
 | Testing       | [JUnit 5](https://github.com/junit-team/junit5) & [Testcontainers](https://github.com/testcontainers/testcontainers-java/) |
 
