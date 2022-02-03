@@ -15,5 +15,5 @@
 
 ## Instructions
 
-This project depends on a MongoDB instance which should be run
+This project depends on a MySQL instance which should be run
 using [Docker](https://www.docker.com/products/docker-desktop) Compose.
