@@ -14,6 +14,8 @@ testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version
 testcontainers-junit = { module = "org.testcontainers:junit-jupiter" }
 testcontainers-mysql = { module = "org.testcontainers:mysql" }
 
+mysql = { module = "mysql:mysql-connector-java" }
+
 netflix-dgs-bom = { module = "com.netflix.graphql.dgs:graphql-dgs-platform-dependencies", version.ref = "netflix_dgs" }
 netflix-dgs-starter = { module = "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter" }
 

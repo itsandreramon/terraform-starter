@@ -5,10 +5,11 @@ import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
-	id("org.springframework.boot") version "3.0.0-M1"
+	id("org.springframework.boot") version "2.6.3"
 	id("org.jetbrains.kotlinx.kover") version "0.5.0-RC2"
 	id("com.netflix.dgs.codegen") version "5.1.16"
 	kotlin("jvm") version "1.6.0"
+	kotlin("plugin.jpa") version "1.6.0"
 	kotlin("plugin.spring") version "1.6.0"
 	kotlin("plugin.serialization") version "1.6.0"
 }
@@ -26,6 +27,8 @@ dependencies {
 	implementation(libs.spring.web)
 
 	implementation(libs.kotlin.stdlib)
+
+	implementation(libs.mysql)
 
 	testImplementation(platform(libs.testcontainers.bom))
 	testImplementation(libs.testcontainers.junit)
