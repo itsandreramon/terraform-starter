@@ -31,11 +31,6 @@ build {
       "sleep 30",
       "sudo apt update",
       "sudo apt -y install openjdk-17-jdk",
-      "sudo rm -Rf /var/lib/cloud/data/scripts",
-      "sudo rm -Rf /var/lib/cloud/scripts/per-instance",
-      "sudo rm -Rf /var/lib/cloud/data/user-data*",
-      "sudo rm -Rf /var/lib/cloud/instances/*",
-      "sudo rm -Rf /var/lib/cloud/instance",
     ]
   }
 }
