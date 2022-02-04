@@ -3,8 +3,8 @@
 
 # Gradle
 .gradle
-build/
-
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
 
 ### IntelliJ IDEA ###
 .idea
