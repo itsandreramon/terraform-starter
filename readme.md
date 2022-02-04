@@ -63,5 +63,5 @@ $ ./build-ami.sh
 #### Provision the database and EC2 instance
 
 ```
-$ terraform -chdir=terraform apply -var="ami=abc123"
+$ ./deploy-app.sh -var="ami=abc123"
 ```
