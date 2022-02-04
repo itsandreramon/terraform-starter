@@ -24,13 +24,13 @@ using [Docker](https://www.docker.com/products/docker-desktop) Compose.
 $ docker compose up
 ```
 
-### Source the .env file
+#### Source the .env file
 
 ```
 $ . ./.env
 ```
 
-### Run the Spring Boot application
+#### Run the Spring Boot application
 
 ```
 $ ./gradlew bootJar
@@ -45,15 +45,15 @@ http://localhost:8080/graphiql
 
 # Deployment
 
-This project uses Terraform to provision the MySQL database on AWS using RDS.
+This project uses Packer & Terraform to provision both the MySQL database as well as the Spring Boot application on AWS.
 
-### Build the AMI and update the Terraform config
+#### Build the AMI and update the Terraform config
 
 ```
 $ ./build-ami.sh
 ```
 
-### Provision the database and EC2 instance
+#### Provision the database and EC2 instance
 
 ```
 $ cd terraform
