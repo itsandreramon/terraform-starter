@@ -18,7 +18,7 @@
 This project depends on a MySQL instance which should be run
 using [Docker](https://www.docker.com/products/docker-desktop) Compose.
 
-### Run the MySQL container
+#### Run the MySQL container
 
 ```
 $ docker compose up
@@ -37,15 +37,19 @@ $ ./gradlew bootJar
 $ java -jar build/libs/App.jar
 ```
 
-### Access GraphiQL
+#### Access GraphiQL
 
 ```
 http://localhost:8080/graphiql
 ```
 
 # Deployment
+This project uses Packer & Terraform to provision both the MySQL database as well as the Spring Boot application on AWS. Ensure that AWS and Terraform are configured correctly by setting the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. Ensure that the IAM user has the privileges needed to run this project:
 
-This project uses Packer & Terraform to provision both the MySQL database as well as the Spring Boot application on AWS.
+  - AmazonRDSFullAccess
+  - AmazonEC2FullAccess
+  - AmazonS3FullAccess (Remote State)
+  - AmazonDynamoDBFullAccess (Remote State)
 
 #### Build the AMI and update the Terraform config
 
