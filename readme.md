@@ -55,11 +55,13 @@ This project uses Packer & Terraform to provision both the MySQL database as wel
 
 ```
 $ ./build-ami.sh
+
+==> spring-ubuntu.amazon-ebs.ubuntu: Creating AMI spring-ubuntu from instance
+    spring-ubuntu.amazon-ebs.ubuntu: AMI: ami-abc123
 ```
 
 #### Provision the database and EC2 instance
 
 ```
-$ cd terraform
-$ terraform apply
+$ terraform -chdir=terraform apply -var="ami=abc123"
 ```
