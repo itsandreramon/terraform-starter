@@ -14,7 +14,7 @@ data "aws_subnet_ids" "all" {
 resource "aws_instance" "instance" {
   ami                    = var.ami
   instance_type          = "t2.micro"
-  key_name               = "myKeys"
+  key_name               = "aws_keys"
   subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
   vpc_security_group_ids = [aws_security_group.ec2.id]
 
@@ -25,7 +25,7 @@ resource "aws_instance" "instance" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("~/Downloads/myKeys.pem")
+    private_key = file("~/Downloads/aws_keys.pem")
     host        = self.public_ip
   }
 
