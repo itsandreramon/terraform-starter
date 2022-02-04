@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_db_instance" "db" {
-  identifier_prefix      = "spring-"
+  identifier_prefix      = "db-"
   name                   = "db"
   allocated_storage      = "10"
   engine                 = "mysql"
