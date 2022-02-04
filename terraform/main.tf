@@ -12,7 +12,7 @@ data "aws_subnet_ids" "all" {
 
 # EC2 instance
 resource "aws_instance" "instance" {
-  ami                    = "ami-0ccf39b8c06050ae1"
+  ami                    = "ami-0ed33809ce5c950b9"
   instance_type          = "t2.micro"
   key_name               = "myKeys"
   subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
