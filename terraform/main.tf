@@ -17,16 +17,24 @@ resource "aws_instance" "instance" {
   key_name               = "myKeys"
   subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
   vpc_security_group_ids = [aws_security_group.ec2.id]
-  user_data              = <<EOF
-                          #!/bin/bash
-                          echo "Hello world" >> ~/test.txt
-                          echo "${data.terraform_remote_state.state.outputs.db_address}" >> ~/test.txt
-                          echo "${data.terraform_remote_state.state.outputs.db_port}" >> ~/test.txt
-                          java -jar ~/App.jar
-                          EOF
 
   lifecycle {
     create_before_destroy = true
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("~/Downloads/myKeys.pem")
+    host        = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "export DB_HOST=${data.terraform_remote_state.state.outputs.db_address}",
+      "export DB_PORT=${data.terraform_remote_state.state.outputs.db_port}",
+      "java -jar ~/App.jar &",
+    ]
   }
 }
 
