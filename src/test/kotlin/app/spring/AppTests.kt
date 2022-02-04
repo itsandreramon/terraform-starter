@@ -23,55 +23,55 @@ import org.testcontainers.junit.jupiter.Testcontainers
 @ComponentScan
 @EnableAutoConfiguration
 @SpringBootTest(
-	webEnvironment = RANDOM_PORT,
-	classes = [
-		DgsAutoConfiguration::class,
-		BookFetcher::class,
-	]
+    webEnvironment = RANDOM_PORT,
+    classes = [
+        DgsAutoConfiguration::class,
+        BookFetcher::class,
+    ]
 )
 @Testcontainers
 class AppTests {
 
-	@Autowired lateinit var queryExecutor: DgsQueryExecutor
+    @Autowired lateinit var queryExecutor: DgsQueryExecutor
 
-	@Test
-	fun test_save_book() {
-		val input = BookInput.newBuilder()
-			.title("Harry Potter and the Philosopher's Stone")
-			.author("J. K. Rowling")
-			.build()
+    @Test
+    fun test_save_book() {
+        val input = BookInput.newBuilder()
+            .title("Harry Potter and the Philosopher's Stone")
+            .author("J. K. Rowling")
+            .build()
 
-		val request = GraphQLQueryRequest(
-			query = SaveBookGraphQLQuery.Builder()
-				.book(input)
-				.build(),
-			projection = SaveBookProjectionRoot()
-				.title()
-		)
+        val request = GraphQLQueryRequest(
+            query = SaveBookGraphQLQuery.Builder()
+                .book(input)
+                .build(),
+            projection = SaveBookProjectionRoot()
+                .title()
+        )
 
-		val response = queryExecutor.executeAndExtractJsonPath<String>(
-			request.serialize(),
-			"data.saveBook.title"
-		)
+        val response = queryExecutor.executeAndExtractJsonPath<String>(
+            request.serialize(),
+            "data.saveBook.title"
+        )
 
-		assertEquals("Harry Potter and the Philosopher's Stone", response)
-	}
+        assertEquals("Harry Potter and the Philosopher's Stone", response)
+    }
 
-	companion object {
+    companion object {
 
-		@Container
-		val mysql: MySQLContainer<*> = MySQLContainer("mysql").apply {
-			withDatabaseName("test")
-			withUsername("root")
-			withPassword("password")
-		}
+        @Container
+        val mysql: MySQLContainer<*> = MySQLContainer("mysql").apply {
+            withDatabaseName("test")
+            withUsername("root")
+            withPassword("password")
+        }
 
-		@JvmStatic
-		@DynamicPropertySource
-		fun properties(registry: DynamicPropertyRegistry) {
-			registry.add("spring.datasource.url", mysql::getJdbcUrl)
-			registry.add("spring.datasource.password", mysql::getPassword)
-			registry.add("spring.datasource.username", mysql::getUsername)
-		}
-	}
+        @JvmStatic
+        @DynamicPropertySource
+        fun properties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.datasource.url", mysql::getJdbcUrl)
+            registry.add("spring.datasource.password", mysql::getPassword)
+            registry.add("spring.datasource.username", mysql::getUsername)
+        }
+    }
 }

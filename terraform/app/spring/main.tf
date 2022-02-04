@@ -1,9 +1,9 @@
-resource "aws_instance" "instance" {
+resource "aws_instance" "spring" {
   ami                    = var.ami
   instance_type          = "t2.micro"
   key_name               = "ec2-keys"
   subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
-  vpc_security_group_ids = [aws_security_group.ec2.id]
+  vpc_security_group_ids = [aws_security_group.spring.id]
 
   lifecycle {
     create_before_destroy = true
@@ -25,8 +25,8 @@ resource "aws_instance" "instance" {
   }
 }
 
-resource "aws_security_group" "ec2" {
-  name   = "ec2"
+resource "aws_security_group" "spring" {
+  name   = "spring"
   vpc_id = data.aws_vpc.default.id
 
   ingress {

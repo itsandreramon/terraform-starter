@@ -10,12 +10,12 @@ import javax.persistence.Table
 @Table(name = "books")
 open class BookEntity(
 
-	@Id
-	open val uuid: String = UUID.randomUUID().toString(),
+    @Id
+    open val uuid: String = UUID.randomUUID().toString(),
 
-	open val title: String = "",
+    open val title: String = "",
 
-	open val author: String = "",
+    open val author: String = "",
 
-	open val created: String = Instant.now().toString(),
+    open val created: String = Instant.now().toString(),
 )

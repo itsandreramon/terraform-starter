@@ -8,7 +8,7 @@ resource "aws_db_instance" "db" {
   allocated_storage      = "10"
   engine                 = "mysql"
   instance_class         = "db.t2.micro"
-  vpc_security_group_ids = [aws_security_group.rds.id]
+  vpc_security_group_ids = [aws_security_group.db.id]
 
   publicly_accessible = true
   skip_final_snapshot = true
@@ -17,8 +17,8 @@ resource "aws_db_instance" "db" {
   password = "password"
 }
 
-resource "aws_security_group" "rds" {
-  name   = "rds"
+resource "aws_security_group" "db" {
+  name   = "db"
   vpc_id = data.aws_vpc.default.id
 
   ingress {

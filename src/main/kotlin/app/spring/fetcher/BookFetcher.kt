@@ -11,22 +11,22 @@ import com.netflix.graphql.dgs.InputArgument
 @DgsComponent
 class BookFetcher(private val bookService: BookService) {
 
-	@DgsQuery
-	fun getAllBooks(): List<Book> {
-		return bookService.getAll()
-	}
+    @DgsQuery
+    fun getAllBooks(): List<Book> {
+        return bookService.getAll()
+    }
 
-	@DgsQuery
-	fun getBookByUuid(
-		@InputArgument uuid: String,
-	): Book? {
-		return bookService.getByUuid(uuid)
-	}
+    @DgsQuery
+    fun getBookByUuid(
+        @InputArgument uuid: String,
+    ): Book? {
+        return bookService.getByUuid(uuid)
+    }
 
-	@DgsMutation
-	fun saveBook(
-		@InputArgument book: BookInput,
-	): Book {
-		return bookService.save(book)
-	}
+    @DgsMutation
+    fun saveBook(
+        @InputArgument book: BookInput,
+    ): Book {
+        return bookService.save(book)
+    }
 }
