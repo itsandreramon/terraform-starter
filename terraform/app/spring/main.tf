@@ -18,10 +18,10 @@ resource "aws_instance" "spring" {
 
   provisioner "remote-exec" {
     inline = [
-      "sleep 20",
       "export DB_HOST=${data.terraform_remote_state.db.outputs.db_address}",
       "export DB_PORT=${data.terraform_remote_state.db.outputs.db_port}",
       "nohup java -jar ~/App.jar &",
+      "sleep 30", # give the application time to start
     ]
   }
 }
