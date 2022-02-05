@@ -50,14 +50,9 @@ This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.ter
   - AmazonS3FullAccess (Remote State)
   - AmazonDynamoDBFullAccess (Remote State)
 
-#### Build the AMI
+#### Build the AMI and deploy to AWS
 
 ```
 $ ./build-ami.sh
-```
-
-#### Provision the RDS and EC2 instance
-
-```
 $ ./deploy-app.sh
 ```
