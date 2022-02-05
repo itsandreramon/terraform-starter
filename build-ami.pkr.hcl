@@ -6,8 +6,8 @@ locals {
 data "amazon-ami" "ubuntu" {
   filters = {
     virtualization-type = "hvm"
-    name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
     root-device-type    = "ebs"
+    name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
   }
 
   owners      = [canonical]
