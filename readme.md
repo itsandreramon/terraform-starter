@@ -50,17 +50,9 @@ This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.ter
   - AmazonS3FullAccess (Remote State)
   - AmazonDynamoDBFullAccess (Remote State)
 
-#### Build the AMI and update the Terraform config
+#### Build the AMI and deploy to AWS
 
 ```
 $ ./build-ami.sh
-
-==> spring-ubuntu.amazon-ebs.ubuntu: Creating AMI spring-ubuntu from instance
-    spring-ubuntu.amazon-ebs.ubuntu: AMI: ami-abc123
-```
-
-#### Provision the database and EC2 instance
-
-```
-$ ./deploy-app.sh -var="ami=abc123"
+$ ./deploy-app.sh
 ```
