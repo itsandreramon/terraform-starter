@@ -43,12 +43,17 @@ http://localhost:8080/graphiql
 ```
 
 # Deployment
-This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.terraform.io/) to provision both the MySQL database as well as the Spring Boot application on AWS. For demonstration purposes, we are deploying into the default VPC and allow access to RDS from anywhere. Ensure that AWS and Terraform are configured correctly by setting the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. Ensure that the IAM user has the privileges needed to run this project:
 
-  - AmazonRDSFullAccess
-  - AmazonEC2FullAccess
-  - AmazonS3FullAccess (Remote State)
-  - AmazonDynamoDBFullAccess (Remote State)
+This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.terraform.io/) to provision both the MySQL
+database as well as the Spring Boot application on AWS. For demonstration purposes, we are deploying into the default
+VPC and allow access to RDS from anywhere. Ensure that AWS and Terraform are configured correctly by setting
+the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. Ensure that the IAM user has the privileges
+needed to run this project:
+
+- AmazonRDSFullAccess
+- AmazonEC2FullAccess
+- AmazonS3FullAccess (Remote State)
+- AmazonDynamoDBFullAccess (Remote State)
 
 #### Build the AMI and deploy to AWS
 
