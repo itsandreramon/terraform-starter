@@ -1,5 +1,20 @@
+data "aws_ami" "spring-ubuntu" {
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+
+  filter {
+    name   = "tag:Name"
+    values = ["spring-ubuntu"]
+  }
+
+  most_recent = true
+  owners      = ["self"]
+}
+
 resource "aws_instance" "spring" {
-  ami                    = var.ami
+  ami                    = data.aws_ami.spring-ubuntu.id
   instance_type          = "t2.micro"
   key_name               = "ec2-keys"
   subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]

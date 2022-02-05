@@ -1,8 +1,3 @@
-locals {
-  canonical = "099720109477"
-  region    = "us-east-2"
-}
-
 data "amazon-ami" "ubuntu" {
   filters = {
     virtualization-type = "hvm"
@@ -10,8 +5,8 @@ data "amazon-ami" "ubuntu" {
     name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
   }
 
-  owners      = [canonical]
-  region      = region
+  owners      = ["099720109477"]
+  region      = "us-east-2"
   most_recent = true
 }
 
@@ -20,15 +15,17 @@ source "amazon-ebs" "ubuntu" {
   ami_name         = "spring-ubuntu"
   instance_type    = "t2.micro"
   ssh_username     = "ubuntu"
-  region           = region
+  region           = "us-east-2"
   force_deregister = true
+
+  tags = {
+    Name = "spring-ubuntu"
+  }
 }
 
 build {
   name    = "spring-ubuntu"
-  sources = [
-    "source.amazon-ebs.ubuntu"
-  ]
+  sources = ["source.amazon-ebs.ubuntu"]
 
   provisioner "file" {
     source      = "build/libs/App.jar"
