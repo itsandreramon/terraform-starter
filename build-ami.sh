@@ -1,3 +1,3 @@
 #!/bin/bash
 ./gradlew clean bootJar
-packer build -force main.pkr.hcl
+packer build build-ami.pkr.hcl

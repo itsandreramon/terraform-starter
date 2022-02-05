@@ -1,18 +1,27 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
+locals {
+  canonical = "099720109477"
+  region    = "us-east-2"
+}
+
+data "amazon-ami" "ubuntu" {
+  filters = {
+    virtualization-type = "hvm"
+    name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+    root-device-type    = "ebs"
   }
+
+  owners      = [canonical]
+  region      = region
+  most_recent = true
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "spring-ubuntu"
-  source_ami    = "ami-0fb653ca2d3203ac1"
-  instance_type = "t2.micro"
-  region        = "us-east-2"
-  ssh_username  = "ubuntu"
+  source_ami       = data.amazon-ami.ubuntu.id
+  ami_name         = "spring-ubuntu"
+  instance_type    = "t2.micro"
+  ssh_username     = "ubuntu"
+  region           = region
+  force_deregister = true
 }
 
 build {
