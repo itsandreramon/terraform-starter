@@ -56,6 +56,7 @@ needed to run this project:
 - AmazonDynamoDBFullAccess (Remote State)
 
 #### Build the AMI and deploy to AWS
+Before deploying with Terraform, make sure that you have a valid Key Pair by creating and downloading it via the EC2 dashboard. Place the .pem file inside `~/.ec2/` and run `chmod 600 ~/.ec2/` on it. Verify that the file has the correct name inside your Terraform configuration.
 
 ```
 $ ./build-ami.sh
