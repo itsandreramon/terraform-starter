@@ -25,8 +25,11 @@ jobs:
         with:
           gradle-version: wrapper
 
+      - name: Run lint
+        run: ./gradlew ktlintCheck
+
       - name: Build with Gradle
-        run: ./gradlew ktlintCheck test bootJar --scan --stacktrace
+        run: ./gradlew test bootJar --scan --stacktrace
 
       - name: Create coverage report
         run: ./gradlew koverReport
