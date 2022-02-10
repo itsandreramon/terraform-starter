@@ -4,6 +4,6 @@ spring:
     username: root
     password: password
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate.ddl-auto: create-drop
     show-sql: true
