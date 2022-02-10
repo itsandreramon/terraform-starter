@@ -1,29 +1,36 @@
 locals {
-  bucket = "terraform-state-spring-app"
+  bucket = "terraform-state-sample-1"
+  locks  = "terraform-state-sample-1-locks"
 }
 
-resource "aws_s3_bucket" "terraform_state" {
+resource "aws_s3_bucket" "state" {
   bucket = local.bucket
 
   lifecycle {
     prevent_destroy = true
   }
+}
 
-  versioning {
-    enabled = true
+resource "aws_s3_bucket_versioning" "state" {
+  bucket = aws_s3_bucket.state.id
+
+  versioning_configuration {
+    status = "Enabled"
   }
+}
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+resource "aws_s3_bucket_server_side_encryption_configuration" "state" {
+  bucket = aws_s3_bucket.state.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
   }
 }
 
-resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "${local.bucket}-locks"
+resource "aws_dynamodb_table" "locks" {
+  name         = local.locks
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 

@@ -1,7 +1,7 @@
-output "db_address" {
+output "address" {
   value = aws_db_instance.db.address
 }
 
-output "db_port" {
+output "port" {
   value = aws_db_instance.db.port
 }

@@ -1,3 +1,7 @@
+provider "aws" {
+  region = var.region
+}
+
 data "aws_ami" "spring-ubuntu" {
   filter {
     name   = "state"
@@ -79,8 +83,8 @@ data "terraform_remote_state" "db" {
 
   config = {
     bucket = "terraform-state-spring-app"
-    key    = "app/db/state.tfstate"
-    region = "us-east-2"
+    key    = "app/mysql/state.tfstate"
+    region = var.region
   }
 }
 
