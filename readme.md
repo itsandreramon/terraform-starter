@@ -44,7 +44,7 @@ http://localhost:8080/graphiql
 
 # Deployment
 
-#### Create .env file when using Terraform
+#### Create .env file
 ```
 TF_VAR_region=us-east-2
 TF_VAR_name=demo
