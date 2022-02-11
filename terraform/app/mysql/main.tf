@@ -8,15 +8,18 @@ locals {
   port    = 3306
 }
 
-module "db" {
+module "mysql" {
   source = "../../modules/db"
 
-  db_name         = "db"
-  name            = var.name
-  port            = local.port
-  engine          = local.engine
-  engine_version  = local.version
-  parameter_group = aws_db_parameter_group.db.name
+  db_name              = "db"
+  name                 = var.name
+  region               = var.region
+  port                 = local.port
+  engine               = local.engine
+  engine_version       = local.version
+  vpc_id               = data.terraform_remote_state.vpc.outputs.id
+  subnet_group_name    = data.terraform_remote_state.vpc.outputs.db_subnet_group_name
+  parameter_group_name = aws_db_parameter_group.db.name
 }
 
 resource "aws_db_parameter_group" "db" {
@@ -31,5 +34,16 @@ resource "aws_db_parameter_group" "db" {
   parameter {
     name  = "character_set_client"
     value = "utf8"
+  }
+}
+
+
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+
+  config = {
+    bucket = "terraform-state-sample-1"
+    key    = "app/vpc/state.tfstate"
+    region = var.region
   }
 }

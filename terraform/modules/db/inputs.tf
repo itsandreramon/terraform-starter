@@ -18,6 +18,18 @@ variable "engine_version" {
   type = string
 }
 
-variable "parameter_group" {
+variable "parameter_group_name" {
+  type = string
+}
+
+variable "subnet_group_name" {
+  type = string
+}
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "region" {
   type = string
 }

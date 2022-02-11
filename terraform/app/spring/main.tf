@@ -2,6 +2,29 @@ provider "aws" {
   region = var.region
 }
 
+module "spring" {
+  source = "../../modules/instance"
+
+  name      = var.name
+  region    = var.region
+  ami       = data.aws_ami.spring-ubuntu.id
+  vpc_id    = data.terraform_remote_state.vpc.outputs.id
+  subnet_id = data.terraform_remote_state.vpc.outputs.instance_subnet_id
+  port_db   = data.terraform_remote_state.mysql.outputs.db_port
+  port      = 8080
+  type      = "t2.micro"
+  username  = "ubuntu"
+  key_name  = "ec2-keys"
+  pem_file  = "~/.ec2/ec2-keys.pem"
+
+  exec = [
+    "export DB_HOST=${data.terraform_remote_state.mysql.outputs.db_address}",
+    "export DB_PORT=${data.terraform_remote_state.mysql.outputs.db_port}",
+    "nohup java -jar ~/App.jar &",
+    "sleep 30", # give the application time to start
+  ]
+}
+
 data "aws_ami" "spring-ubuntu" {
   filter {
     name   = "state"
@@ -17,81 +40,22 @@ data "aws_ami" "spring-ubuntu" {
   owners      = ["self"]
 }
 
-resource "aws_instance" "spring" {
-  ami                    = data.aws_ami.spring-ubuntu.id
-  instance_type          = "t2.micro"
-  key_name               = "ec2-keys"
-  subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
-  vpc_security_group_ids = [aws_security_group.spring.id]
-
-  lifecycle {
-    create_before_destroy = true
-  }
-
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("~/.ec2/ec2-keys.pem")
-    host        = self.public_ip
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "export DB_HOST=${data.terraform_remote_state.db.outputs.db_address}",
-      "export DB_PORT=${data.terraform_remote_state.db.outputs.db_port}",
-      "nohup java -jar ~/App.jar &",
-      "sleep 30", # give the application time to start
-    ]
-  }
-}
-
-resource "aws_security_group" "spring" {
-  name   = "spring"
-  vpc_id = data.aws_vpc.default.id
-
-  ingress {
-    to_port     = 8080
-    from_port   = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    to_port     = 22
-    from_port   = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    to_port     = 3306
-    from_port   = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    to_port     = 0
-    from_port   = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-data "terraform_remote_state" "db" {
+data "terraform_remote_state" "mysql" {
   backend = "s3"
 
   config = {
-    bucket = "terraform-state-spring-app"
+    bucket = "terraform-state-sample-1"
     key    = "app/mysql/state.tfstate"
     region = var.region
   }
 }
 
-data "aws_vpc" "default" {
-  default = true
-}
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
 
-data "aws_subnet_ids" "all" {
-  vpc_id = data.aws_vpc.default.id
+  config = {
+    bucket = "terraform-state-sample-1"
+    key    = "app/vpc/state.tfstate"
+    region = var.region
+  }
 }

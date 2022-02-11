@@ -1,7 +1,7 @@
 output "db_address" {
-  value = module.db.port
+  value = module.mysql.address
 }
 
 output "db_port" {
-  value = module.db.address
+  value = module.mysql.port
 }

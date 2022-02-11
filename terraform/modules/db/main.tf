@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-2"
+  region = var.region
 }
 
 resource "aws_db_instance" "db" {
@@ -10,10 +10,11 @@ resource "aws_db_instance" "db" {
 
   engine               = var.engine
   engine_version       = var.engine_version
+  parameter_group_name = var.parameter_group_name
   db_name              = var.db_name
-  parameter_group_name = var.parameter_group
+  db_subnet_group_name = var.subnet_group_name
 
-  publicly_accessible = true
+  publicly_accessible = false
   skip_final_snapshot = true
 
   username = "root"
@@ -22,13 +23,13 @@ resource "aws_db_instance" "db" {
 
 resource "aws_security_group" "db" {
   name   = "${var.name}-sg"
-  vpc_id = data.aws_vpc.default.id
+  vpc_id = var.vpc_id
 
   ingress {
     to_port     = var.port
     from_port   = var.port
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.2.0/24"]
   }
 
   egress {
@@ -37,8 +38,4 @@ resource "aws_security_group" "db" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-
-data "aws_vpc" "default" {
-  default = true
 }
