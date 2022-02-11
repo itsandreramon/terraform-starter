@@ -3,11 +3,12 @@ provider "aws" {
 }
 
 resource "aws_instance" "instance" {
-  ami                    = var.ami
-  instance_type          = var.type
-  key_name               = var.key_name
-  subnet_id              = var.subnet_id
-  vpc_security_group_ids = [aws_security_group.instance.id]
+  ami                         = var.ami
+  instance_type               = var.type
+  key_name                    = var.key_name
+  subnet_id                   = var.subnet_id
+  vpc_security_group_ids      = [aws_security_group.instance.id]
+  associate_public_ip_address = true
 
   lifecycle {
     create_before_destroy = true
@@ -16,8 +17,8 @@ resource "aws_instance" "instance" {
   connection {
     type        = "ssh"
     user        = var.username
-    private_key = file(var.pem_file)
     host        = self.public_ip
+    private_key = file(var.pem_file)
   }
 
   provisioner "remote-exec" {

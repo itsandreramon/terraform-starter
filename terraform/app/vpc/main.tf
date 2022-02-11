@@ -11,9 +11,10 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "instance_subnet" {
-  vpc_id            = aws_vpc.vpc.id
-  availability_zone = "${var.region}a"
-  cidr_block        = "10.0.101.0/24"
+  vpc_id                  = aws_vpc.vpc.id
+  availability_zone       = "${var.region}a"
+  cidr_block              = "10.0.101.0/24"
+  map_public_ip_on_launch = true
 }
 
 resource "aws_db_subnet_group" "db_subnet_group" {

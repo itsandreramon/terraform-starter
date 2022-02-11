@@ -2,9 +2,14 @@ provider "aws" {
   region = var.region
 }
 
+locals {
+  key_name = "ec2-keys"
+}
+
 module "spring" {
   source = "../../modules/instance"
 
+  type      = "t2.micro"
   name      = var.name
   region    = var.region
   ami       = data.aws_ami.spring-ubuntu.id
@@ -12,10 +17,10 @@ module "spring" {
   subnet_id = data.terraform_remote_state.vpc.outputs.instance_subnet_id
   port_db   = data.terraform_remote_state.mysql.outputs.db_port
   port      = 8080
-  type      = "t2.micro"
-  username  = "ubuntu"
-  key_name  = "ec2-keys"
-  pem_file  = "~/.ec2/ec2-keys.pem"
+
+  username = "ubuntu"
+  pem_file = "~/.ec2/${local.key_name}.pem"
+  key_name = local.key_name
 
   exec = [
     "export DB_HOST=${data.terraform_remote_state.mysql.outputs.db_address}",
