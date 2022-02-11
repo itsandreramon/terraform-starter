@@ -17,11 +17,6 @@
 This project depends on a MySQL instance which should be run
 using [Docker](https://www.docker.com/products/docker-desktop) Compose.
 
-```
-TF_VAR_region=us-east-2
-TF_VAR_name=demo
-```
-
 #### Run the MySQL container
 
 ```
@@ -48,6 +43,12 @@ http://localhost:8080/graphiql
 ```
 
 # Deployment
+
+#### Create .env file when using Terraform
+```
+TF_VAR_region=us-east-2
+TF_VAR_name=demo
+```
 
 This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.terraform.io/) to provision both the MySQL
 database as well as the Spring Boot application on AWS. For demonstration purposes, we are deploying into the default
