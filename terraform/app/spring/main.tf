@@ -23,6 +23,7 @@ module "spring" {
   key_name = local.key_name
 
   exec = [
+    "echo \"Starting application...\"",
     "export DB_HOST=${data.terraform_remote_state.mysql.outputs.db_address}",
     "export DB_PORT=${data.terraform_remote_state.mysql.outputs.db_port}",
     "nohup java -jar ~/App.jar &",
