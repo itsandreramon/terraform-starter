@@ -17,6 +17,11 @@
 This project depends on a MySQL instance which should be run
 using [Docker](https://www.docker.com/products/docker-desktop) Compose.
 
+```
+TF_VAR_region=us-east-2
+TF_VAR_name=demo
+```
+
 #### Run the MySQL container
 
 ```
@@ -56,7 +61,10 @@ needed to run this project:
 - AmazonDynamoDBFullAccess (Remote State)
 
 #### Build the AMI and deploy to AWS
-Before deploying with Terraform, make sure that you have a valid Key Pair by creating and downloading it via the EC2 dashboard. Place the .pem file inside `~/.ec2/` and run `chmod 600 ~/.ec2/` on it. Verify that the file has the correct name inside your Terraform configuration.
+
+Before deploying with Terraform, make sure that you have a valid Key Pair by creating and downloading it via the EC2
+dashboard. Place the .pem file inside `~/.ec2/` and run `chmod 600 ~/.ec2/` on it. Verify that the file has the correct
+name inside your Terraform configuration.
 
 ```
 $ ./build-ami.sh
