@@ -44,7 +44,13 @@ http://localhost:8080/graphiql
 
 # Deployment
 
+#### Structure
+
+- EC2 instance in public subnet
+- RDS instance in private subnet
+
 #### Create .env file
+
 ```
 TF_VAR_region=us-east-2
 TF_VAR_name=demo
