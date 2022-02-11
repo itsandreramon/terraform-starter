@@ -2,6 +2,9 @@ provider "aws" {
   region = var.region
 }
 
+###################################################
+# Create DB instance
+###################################################
 resource "aws_db_instance" "db" {
   allocated_storage      = "10"
   instance_class         = "db.t2.micro"

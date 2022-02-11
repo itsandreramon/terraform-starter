@@ -1,6 +1,6 @@
 locals {
-  bucket = "terraform-state-sample-1"
-  locks  = "terraform-state-sample-1-locks"
+  bucket = "terraform-state-example"
+  locks  = "terraform-state-example-locks"
 }
 
 resource "aws_s3_bucket" "state" {

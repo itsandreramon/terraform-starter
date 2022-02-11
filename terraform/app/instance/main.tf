@@ -15,7 +15,7 @@ module "spring" {
   ami       = data.aws_ami.spring-ubuntu.id
   vpc_id    = data.terraform_remote_state.vpc.outputs.id
   subnet_id = data.terraform_remote_state.vpc.outputs.instance_subnet_id
-  port_db   = data.terraform_remote_state.mysql.outputs.db_port
+  port_db   = data.terraform_remote_state.db.outputs.db_port
   port      = 8080
 
   username = "ubuntu"
@@ -24,8 +24,8 @@ module "spring" {
 
   exec = [
     "echo \"Starting application...\"",
-    "export DB_HOST=${data.terraform_remote_state.mysql.outputs.db_address}",
-    "export DB_PORT=${data.terraform_remote_state.mysql.outputs.db_port}",
+    "export DB_HOST=${data.terraform_remote_state.db.outputs.db_address}",
+    "export DB_PORT=${data.terraform_remote_state.db.outputs.db_port}",
     "nohup java -jar ~/App.jar &",
     "sleep 30", # give the application time to start
   ]
@@ -46,12 +46,12 @@ data "aws_ami" "spring-ubuntu" {
   owners      = ["self"]
 }
 
-data "terraform_remote_state" "mysql" {
+data "terraform_remote_state" "db" {
   backend = "s3"
 
   config = {
-    bucket = "terraform-state-sample-1"
-    key    = "app/mysql/state.tfstate"
+    bucket = "terraform-state-example"
+    key    = "app/db/state.tfstate"
     region = var.region
   }
 }
@@ -60,7 +60,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket = "terraform-state-sample-1"
+    bucket = "terraform-state-example"
     key    = "app/vpc/state.tfstate"
     region = var.region
   }

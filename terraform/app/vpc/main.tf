@@ -17,7 +17,7 @@ resource "aws_vpc" "vpc" {
 ###################################################
 # Allow internet for to VPC via internet gateway
 ###################################################
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "vpc_gateway" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
@@ -25,24 +25,24 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_route_table" "rt" {
+resource "aws_route_table" "vpc_route_table" {
   vpc_id = aws_vpc.vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+    gateway_id = aws_internet_gateway.vpc_gateway.id
   }
 }
 
 resource "aws_route_table_association" "rt_association" {
-  subnet_id      = aws_subnet.instance_subnet.id
-  route_table_id = aws_route_table.rt.id
+  subnet_id      = aws_subnet.subnet_instance.id
+  route_table_id = aws_route_table.vpc_route_table.id
 }
 
 ###################################################
 # Create instance subnet with public ip
 ###################################################
-resource "aws_subnet" "instance_subnet" {
+resource "aws_subnet" "subnet_instance" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "${var.region}a"
   cidr_block              = "10.0.101.0/24"
@@ -52,29 +52,29 @@ resource "aws_subnet" "instance_subnet" {
 ###################################################
 # Create db subnets without public ip
 ###################################################
-resource "aws_db_subnet_group" "db_subnet_group" {
-  name_prefix = "${var.name}-subnet-group-"
+resource "aws_db_subnet_group" "subnet_group_db" {
+  name_prefix = "${var.name}-db-"
 
   subnet_ids = [
-    aws_subnet.db_subnet_a.id,
-    aws_subnet.db_subnet_b.id,
-    aws_subnet.db_subnet_c.id,
+    aws_subnet.subnet_a_db.id,
+    aws_subnet.subnet_b_db.id,
+    aws_subnet.subnet_c_db.id,
   ]
 }
 
-resource "aws_subnet" "db_subnet_a" {
+resource "aws_subnet" "subnet_a_db" {
   vpc_id            = aws_vpc.vpc.id
   availability_zone = "${var.region}a"
   cidr_block        = "10.0.1.0/24"
 }
 
-resource "aws_subnet" "db_subnet_b" {
+resource "aws_subnet" "subnet_b_db" {
   vpc_id            = aws_vpc.vpc.id
   availability_zone = "${var.region}b"
   cidr_block        = "10.0.2.0/24"
 }
 
-resource "aws_subnet" "db_subnet_c" {
+resource "aws_subnet" "subnet_c_db" {
   vpc_id            = aws_vpc.vpc.id
   availability_zone = "${var.region}c"
   cidr_block        = "10.0.3.0/24"
