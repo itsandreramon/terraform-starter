@@ -2,8 +2,12 @@ package app.spring.model
 
 import java.time.Instant
 import java.util.UUID
+import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
@@ -11,11 +15,14 @@ import javax.persistence.Table
 open class BookEntity(
 
     @Id
+    @Column(name = "book_uuid")
     open val uuid: String = UUID.randomUUID().toString(),
 
     open val title: String = "",
 
-    open val author: String = "",
+    @ManyToOne
+    @JoinColumn(name = "author_uuid", nullable = false) // uuid is primary key in AuthorEntity
+    open val author: AuthorEntity,
 
     open val created: String = Instant.now().toString(),
 )

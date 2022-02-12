@@ -25,8 +25,9 @@ class BookFetcher(private val bookService: BookService) {
 
     @DgsMutation
     fun saveBook(
+        authorUuid: String,
         @InputArgument book: BookInput,
-    ): Book {
-        return bookService.save(book)
+    ): Book? {
+        return bookService.save(authorUuid, book)
     }
 }

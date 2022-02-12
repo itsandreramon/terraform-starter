@@ -1,7 +1,10 @@
 package app.spring
 
+import app.spring.graphql.client.SaveAuthorGraphQLQuery
+import app.spring.graphql.client.SaveAuthorProjectionRoot
 import app.spring.graphql.client.SaveBookGraphQLQuery
 import app.spring.graphql.client.SaveBookProjectionRoot
+import app.spring.graphql.types.AuthorInput
 import app.spring.graphql.types.BookInput
 import com.netflix.graphql.dgs.DgsQueryExecutor
 import com.netflix.graphql.dgs.client.codegen.GraphQLQueryRequest
@@ -24,35 +27,52 @@ class AppTests {
 
     @Test
     fun test_save_book() {
-        val input = BookInput.newBuilder()
-            .title("Harry Potter and the Philosopher's Stone")
-            .author("J. K. Rowling")
+        val inputAuthor = AuthorInput.newBuilder()
+            .firstName("J.K.")
+            .lastName("Rowling")
             .build()
 
-        val request = GraphQLQueryRequest(
+        val requestSaveAuthor = GraphQLQueryRequest(
+            query = SaveAuthorGraphQLQuery.Builder()
+                .author(inputAuthor)
+                .build(),
+            projection = SaveAuthorProjectionRoot()
+                .uuid()
+        )
+
+        val responseSaveAuthor = queryExecutor.executeAndExtractJsonPath<String>(
+            requestSaveAuthor.serialize(),
+            "data.saveAuthor.uuid"
+        )
+
+        val inputBook = BookInput.newBuilder()
+            .title("Harry Potter and the Philosopher's Stone")
+            .build()
+
+        val requestSaveBook = GraphQLQueryRequest(
             query = SaveBookGraphQLQuery.Builder()
-                .book(input)
+                .authorUuid(responseSaveAuthor)
+                .book(inputBook)
                 .build(),
             projection = SaveBookProjectionRoot()
                 .title()
         )
 
-        val response = queryExecutor.executeAndExtractJsonPath<String>(
-            request.serialize(),
+        val responseSaveBook = queryExecutor.executeAndExtractJsonPath<String>(
+            requestSaveBook.serialize(),
             "data.saveBook.title"
         )
 
-        assertEquals("Harry Potter and the Philosopher's Stone", response)
+        assertEquals("Harry Potter and the Philosopher's Stone", responseSaveBook)
     }
 
     companion object {
 
         @Container
-        val mysql: MySQLContainer<*> = MySQLContainer("mysql").apply {
-            withDatabaseName("test")
-            withUsername("root")
-            withPassword("password")
-        }
+        val mysql: MySQLContainer<*> = MySQLContainer("mysql")
+            .withDatabaseName("test")
+            .withUsername("root")
+            .withPassword("password")
 
         @JvmStatic
         @DynamicPropertySource

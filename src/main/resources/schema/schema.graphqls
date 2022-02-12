@@ -6,24 +6,36 @@ schema {
 type Query {
     getBookByUuid(uuid: String!): Book!
     getAllBooks: [Book!]!
+
+    getAuthorByUuid(uuid: String!): Author!
+    getAllAuthors: [Author!]!
 }
 
 type Mutation {
-    saveBook(book: BookInput!): Book!
-}
-
-type Subscription {
-    numbers: Int!
+    saveBook(authorUuid: String!, book: BookInput!): Book
+    saveAuthor(author: AuthorInput!): Author!
 }
 
 type Book {
     uuid: String!
-    author: String!
+    author: Author!
     title: String!
     created: String!
 }
 
 input BookInput {
-    author: String!
     title: String!
+}
+
+type Author {
+    uuid: String!
+    firstName: String!
+    lastName: String!
+    created: String!
+    books: [Book!]!
+}
+
+input AuthorInput {
+    firstName: String!
+    lastName: String!
 }

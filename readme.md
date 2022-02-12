@@ -52,6 +52,9 @@ http://localhost:8080/graphiql
 #### Create .env file
 
 ```
+DB_HOST=localhost
+DB_PORT=3306
+
 TF_VAR_region=us-east-2
 TF_VAR_name=demo
 ```
