@@ -9,11 +9,11 @@ import app.spring.repository.AuthorRepository
 import app.spring.repository.BookRepository
 import io.mockk.every
 import io.mockk.mockk
-import java.util.Optional
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.Optional
 
 class BookServiceTest {
 
