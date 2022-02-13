@@ -22,12 +22,12 @@ dependencies {
     implementation(platform(libs.netflix.dgs.bom))
     implementation(libs.netflix.dgs.starter)
 
-    implementation(libs.spring.data)
+    implementation(libs.spring.jpa)
     implementation(libs.spring.web)
 
     implementation(libs.kotlin.stdlib)
 
-    implementation(libs.mysql)
+    runtimeOnly(libs.mysql)
 
     testImplementation(platform(libs.testcontainers.bom))
     testImplementation(libs.testcontainers.junit)

@@ -7,7 +7,7 @@ mockk = '1.12.2'
 
 [libraries]
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
-spring-data = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 spring-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 
 testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
