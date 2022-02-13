@@ -9,11 +9,11 @@ import app.spring.repository.AuthorRepository
 import app.spring.repository.BookRepository
 import io.mockk.every
 import io.mockk.mockk
+import java.util.Optional
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.util.Optional
 
 class BookServiceTest {
 
@@ -39,9 +39,9 @@ class BookServiceTest {
         val inputTitle = "Example Title"
         val inputAuthorUuid = "abc-123"
 
-        val inputBook = BookInput.newBuilder()
-            .title(inputTitle)
-            .build()
+        val inputBook = BookInput(
+            title = inputTitle,
+        )
 
         val author = AuthorEntity(
             uuid = inputAuthorUuid,
@@ -62,12 +62,12 @@ class BookServiceTest {
             created = created,
         )
 
-        val expected = Book.newBuilder()
-            .author(author.toDto())
-            .title(inputTitle)
-            .uuid(uuid)
-            .created(created)
-            .build()
+        val expected = Book(
+            author = author.toDto(),
+            title = inputTitle,
+            uuid = uuid,
+            created = created,
+        )
 
         val book = bookService!!.save(
             authorUuid = "abc-123",

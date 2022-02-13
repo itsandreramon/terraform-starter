@@ -29,9 +29,9 @@ class AppTests {
     fun test_save_book() {
         val responseSaveAuthor = saveAuthor("J.K.", "Rowling")
 
-        val inputBook = BookInput.newBuilder()
-            .title("Harry Potter and the Philosopher's Stone")
-            .build()
+        val inputBook = BookInput(
+            title = "Harry Potter and the Philosopher's Stone",
+        )
 
         val requestSaveBook = GraphQLQueryRequest(
             query = SaveBookGraphQLQuery.Builder()
@@ -51,10 +51,10 @@ class AppTests {
     }
 
     private fun saveAuthor(firstName: String, lastName: String): String {
-        val inputAuthor = AuthorInput.newBuilder()
-            .firstName(firstName)
-            .lastName(lastName)
-            .build()
+        val inputAuthor = AuthorInput(
+            firstName = firstName,
+            lastName = lastName,
+        )
 
         val requestSaveAuthor = GraphQLQueryRequest(
             query = SaveAuthorGraphQLQuery.Builder()

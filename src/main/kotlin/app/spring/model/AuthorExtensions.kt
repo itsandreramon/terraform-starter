@@ -13,11 +13,11 @@ fun AuthorInput.toEntity(): AuthorEntity {
 fun AuthorEntity.toDto(): Author {
     val books = this.books.map { it.toDto() }
 
-    return Author.newBuilder()
-        .uuid(this.uuid)
-        .firstName(this.firstName)
-        .lastName(this.lastName)
-        .created(this.created)
-        .books(books)
-        .build()
+    return Author(
+        uuid = this.uuid,
+        firstName = this.firstName,
+        lastName = this.lastName,
+        created = this.created,
+        books = books,
+    )
 }

@@ -11,12 +11,12 @@ fun BookInput.toEntity(author: AuthorEntity): BookEntity {
 }
 
 fun BookEntity.toDto(): Book {
-    val author = this.author?.toDto()
+    val author = this.author.toDto()
 
-    return Book.newBuilder()
-        .uuid(this.uuid)
-        .title(this.title)
-        .created(this.created)
-        .author(author)
-        .build()
+    return Book(
+        uuid = this.uuid,
+        title = this.title,
+        created = this.created,
+        author = author,
+    )
 }

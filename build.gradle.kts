@@ -67,6 +67,7 @@ tasks.withType<BootBuildImage> {
 tasks.withType<GenerateJavaTask> {
     schemaPaths = mutableListOf("${projectDir}/src/main/resources/schema")
     packageName = "app.spring.graphql"
+    language = "kotlin"
     generateClient = true
 }
 
