@@ -21,7 +21,7 @@ open class AuthorEntity(
 
     open val lastName: String = "",
 
-    @OneToMany(mappedBy = "author", fetch = EAGER) // name of field with @ManyToOne to AuthorEntity
+    @OneToMany(mappedBy = "author", fetch = EAGER)
     open val books: List<BookEntity> = listOf(),
 
     open val created: String = Instant.now().toString(),

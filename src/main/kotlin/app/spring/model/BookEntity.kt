@@ -20,7 +20,7 @@ open class BookEntity(
     open val title: String = "",
 
     @ManyToOne
-    @JoinColumn(name = "author_uuid", nullable = false) // uuid is primary key in AuthorEntity
+    @JoinColumn(name = "author_uuid", nullable = false)
     open val author: AuthorEntity,
 
     open val created: String = Instant.now().toString(),
