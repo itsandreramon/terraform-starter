@@ -27,23 +27,7 @@ class AppTests {
 
     @Test
     fun test_save_book() {
-        val inputAuthor = AuthorInput.newBuilder()
-            .firstName("J.K.")
-            .lastName("Rowling")
-            .build()
-
-        val requestSaveAuthor = GraphQLQueryRequest(
-            query = SaveAuthorGraphQLQuery.Builder()
-                .author(inputAuthor)
-                .build(),
-            projection = SaveAuthorProjectionRoot()
-                .uuid()
-        )
-
-        val responseSaveAuthor = queryExecutor.executeAndExtractJsonPath<String>(
-            requestSaveAuthor.serialize(),
-            "data.saveAuthor.uuid"
-        )
+        val responseSaveAuthor = saveAuthor("J.K.", "Rowling")
 
         val inputBook = BookInput.newBuilder()
             .title("Harry Potter and the Philosopher's Stone")
@@ -64,6 +48,26 @@ class AppTests {
         )
 
         assertEquals("Harry Potter and the Philosopher's Stone", responseSaveBook)
+    }
+
+    private fun saveAuthor(firstName: String, lastName: String): String {
+        val inputAuthor = AuthorInput.newBuilder()
+            .firstName(firstName)
+            .lastName(lastName)
+            .build()
+
+        val requestSaveAuthor = GraphQLQueryRequest(
+            query = SaveAuthorGraphQLQuery.Builder()
+                .author(inputAuthor)
+                .build(),
+            projection = SaveAuthorProjectionRoot()
+                .uuid()
+        )
+
+        return queryExecutor.executeAndExtractJsonPath(
+            requestSaveAuthor.serialize(),
+            "data.saveAuthor.uuid"
+        )
     }
 
     companion object {
