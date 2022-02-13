@@ -42,8 +42,6 @@ apply(from = "ktlint.gradle.kts")
 
 tasks.test {
     extensions.configure(KoverTaskExtension::class) {
-        isDisabled = false
-        binaryReportFile.set(file("$buildDir/custom/result.bin"))
         includes = listOf("app.spring.*")
         excludes = listOf("app.spring.graphql.*")
     }
