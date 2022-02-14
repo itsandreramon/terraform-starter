@@ -11,18 +11,18 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "authors")
-open class AuthorEntity(
+class AuthorEntity(
 
     @Id
     @Column(name = "author_uuid")
-    open val uuid: String = UUID.randomUUID().toString(),
+    val uuid: String = UUID.randomUUID().toString(),
 
-    open val firstName: String = "",
+    val firstName: String = "",
 
-    open val lastName: String = "",
+    val lastName: String = "",
 
     @OneToMany(mappedBy = "author", fetch = EAGER)
-    open val books: List<BookEntity> = listOf(),
+    val books: List<BookEntity> = listOf(),
 
-    open val created: String = Instant.now().toString(),
+    val created: String = Instant.now().toString(),
 )

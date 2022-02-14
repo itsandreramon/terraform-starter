@@ -11,17 +11,17 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "books")
-open class BookEntity(
+class BookEntity(
 
     @Id
     @Column(name = "book_uuid")
-    open val uuid: String = UUID.randomUUID().toString(),
+    val uuid: String = UUID.randomUUID().toString(),
 
-    open val title: String = "",
+    val title: String = "",
 
     @ManyToOne
     @JoinColumn(name = "author_uuid", nullable = false)
-    open val author: AuthorEntity,
+    val author: AuthorEntity,
 
-    open val created: String = Instant.now().toString(),
+    val created: String = Instant.now().toString(),
 )

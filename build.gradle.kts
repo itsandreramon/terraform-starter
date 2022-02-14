@@ -10,8 +10,15 @@ plugins {
     id("com.netflix.dgs.codegen") version "5.1.16"
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.jpa") version "1.6.0"
+    kotlin("plugin.allopen") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
     kotlin("plugin.serialization") version "1.6.0"
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.Embeddable")
+    annotation("javax.persistence.MappedSuperclass")
 }
 
 repositories {
