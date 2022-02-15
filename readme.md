@@ -60,8 +60,8 @@ TF_VAR_name=demo
 ```
 
 This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.terraform.io/) to provision both the MySQL
-database as well as the Spring Boot application on AWS. For demonstration purposes, we are deploying into the default
-VPC and allow access to RDS from anywhere. Ensure that AWS and Terraform are configured correctly by setting
+database as well as the Spring Boot application on AWS. To demonstrate a more realistic environment, we are deploying into a custom
+VPC and allow access to RDS only from the EC2 instance. Ensure that AWS and Terraform are configured correctly by setting
 the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. Ensure that the IAM user has the privileges
 needed to run this project:
 
