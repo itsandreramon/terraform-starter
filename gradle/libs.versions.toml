@@ -1,6 +1,6 @@
 [versions]
 netflix-dgs = '4.9.16'
-pinterest-ktlint = '0.43.2'
+pinterest-ktlint = '0.44.0'
 testcontainers = '1.16.2'
 kotest = '5.1.0'
 mockk = '1.12.2'
