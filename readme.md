@@ -60,8 +60,10 @@ TF_VAR_name=demo
 ```
 
 This project uses [Packer](https://www.packer.io/) & [Terraform](https://www.terraform.io/) to provision both the MySQL
-database as well as the Spring Boot application on AWS. To demonstrate a more realistic environment, we are deploying into a custom
-VPC and allow access to RDS only from the EC2 instance. Ensure that AWS and Terraform are configured correctly by setting
+database as well as the Spring Boot application on AWS. To demonstrate a more realistic environment, we are deploying
+into a custom
+VPC and allow access to RDS only from the EC2 instance. Ensure that AWS and Terraform are configured correctly by
+setting
 the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. Ensure that the IAM user has the privileges
 needed to run this project:
 
@@ -69,6 +71,16 @@ needed to run this project:
 - AmazonEC2FullAccess
 - AmazonS3FullAccess (Remote State)
 - AmazonDynamoDBFullAccess (Remote State)
+
+#### Setup Terraform remote state using AWS S3
+
+To be able to use [outputs](https://www.terraform.io/language/values/outputs) of various modules across Terraform,
+a [remote backend](https://www.terraform.io/language/settings/backends/s3) is used to store the state in S3.
+
+```
+$ terraform -chdir=terraform/global/s3 init
+$ terraform -chdir=terraform/global/s3 apply
+```
 
 #### Build the AMI and deploy to AWS
 
