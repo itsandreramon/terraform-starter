@@ -7,7 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.springframework.boot") version "2.6.3"
     id("org.jetbrains.kotlinx.kover") version "0.5.0-RC2"
-    id("com.netflix.dgs.codegen") version "5.1.16"
+    id("com.netflix.dgs.codegen") version "5.12.4"
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.jpa") version "1.6.0"
     kotlin("plugin.allopen") version "1.6.0"
