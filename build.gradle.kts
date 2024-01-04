@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("io.spring.dependency-management") version "1.1.4"
     id("org.springframework.boot") version "2.6.3"
     id("org.jetbrains.kotlinx.kover") version "0.5.0-RC2"
     id("com.netflix.dgs.codegen") version "5.1.16"
