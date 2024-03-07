@@ -8,7 +8,7 @@ plugins {
     id("org.springframework.boot") version "2.6.3"
     id("org.jetbrains.kotlinx.kover") version "0.5.0-RC2"
     id("com.netflix.dgs.codegen") version "5.1.16"
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.9.23"
     kotlin("plugin.jpa") version "1.6.0"
     kotlin("plugin.allopen") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
